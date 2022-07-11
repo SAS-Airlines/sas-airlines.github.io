@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import Grid from "@mui/material/Grid";
+import Main from "./components/layouts/Main";
+import Logo from "./components/ui/Logo";
+import Filters from "./components/layouts/Filters";
+import Checkbox from "@mui/material/Checkbox";
+
+import "./App.sass";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      <Logo />
+
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <Filters />
+        </Grid>
+        <Grid item xs={9}></Grid>
+      </Grid>
+    </Main>
   );
 }
 
