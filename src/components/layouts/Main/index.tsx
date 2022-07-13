@@ -10,7 +10,14 @@ type Props = {
 const Main = (props: Props) => {
   return (
     <div>
-      <Box sx={{ bgcolor: "#F3F7FA", minHeight: "100vh", paddingTop: "15px" }}>
+      <Box
+        sx={{
+          bgcolor: "#F3F7FA",
+          minHeight: "100vh",
+          paddingTop: "15px",
+          paddingBottom: "30px",
+        }}
+      >
         <Container maxWidth="md">
           <Stack
             direction="column"
