@@ -2,6 +2,7 @@ export type checkboxesData = {
   [prop: string]: {
     value: boolean;
     label: string;
+    num: number;
   };
 };
 
