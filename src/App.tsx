@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Grid from "@mui/material/Grid";
-import Main from "./components/layouts/Main";
+import Main from "./layouts/Main";
 import Logo from "./components/ui/Logo";
-import Filters from "./components/layouts/Filters";
+import Filters from "./components/Filters";
 import ButtonsGroup from "./components/ui/ButtonsGroup";
 import Tickets from "./components/Tickets";
 
-import "./App.sass";
-
-import { tickets } from "./data/dummy";
+import { sorts, tickets } from "./data/dummy";
 
 function App() {
+  const [sortType, setSortType] = useState(Object.keys(sorts)[0]);
+
   return (
     <Main>
       <Logo />
@@ -22,7 +22,7 @@ function App() {
         </Grid>
 
         <Grid item xs={9}>
-          <ButtonsGroup />
+          <ButtonsGroup value={sortType} data={sorts} setValue={setSortType} />
           <Tickets tickets={tickets} />
         </Grid>
       </Grid>

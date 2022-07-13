@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Container from "@mui/material/Container";
 
+import "./styles.sass";
+
 type Props = {
   children?: ReactNode | ReactFragment;
 };
@@ -10,14 +12,7 @@ type Props = {
 const Main = (props: Props) => {
   return (
     <div>
-      <Box
-        sx={{
-          bgcolor: "#F3F7FA",
-          minHeight: "100vh",
-          paddingTop: "15px",
-          paddingBottom: "30px",
-        }}
-      >
+      <Box className="main">
         <Container maxWidth="md">
           <Stack
             direction="column"
