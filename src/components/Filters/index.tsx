@@ -2,63 +2,40 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import CheckboxesGroup from "../ui/CheckboxesGroup";
 import RadioButtonsGroup from "../ui/RadioButtonsGroup";
 
-import { checkboxesData } from "../../data/types";
-import { companies, transfersData } from "../../data/dummy";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../redux/store";
+import { setCompany, setTransfers } from "../../redux/filterSlice";
+
+import { companies } from "../../data/dummy";
+
+import "./styles.sass";
 
 const Filters = () => {
-  const [transfers, setTransfers] = React.useState(transfersData);
-  const [company, setCompany] = React.useState("all");
-
-  const onCheckTransfer = (newData: checkboxesData) => {
-    setTransfers({
-      ...transfers,
-      ...newData,
-    });
-  };
+  const company = useSelector((state: RootState) => state.filters.company);
+  const transfers = useSelector((state: RootState) => state.filters.transfers);
+  const dispatch = useDispatch();
 
   return (
     <Stack direction="column" spacing={2}>
       <Card>
         <CardContent>
-          <Typography
-            variant="h3"
-            sx={{
-              fontSize: 12,
-              fontWeight: 600,
-              textTransform: "uppercase",
-              marginBottom: "20px",
-            }}
-            color="text.secondary"
-            gutterBottom
-          >
-            Количество пересадок
-          </Typography>
-          <CheckboxesGroup data={transfers} setData={onCheckTransfer} />
+          <p className="filters__title">Количество пересадок</p>
+          <CheckboxesGroup
+            data={transfers}
+            setData={(newData) => dispatch(setTransfers(newData))}
+          />
         </CardContent>
       </Card>
       <Card>
         <CardContent>
-          <Typography
-            variant="h3"
-            sx={{
-              fontSize: 12,
-              fontWeight: 600,
-              textTransform: "uppercase",
-              marginBottom: "20px",
-            }}
-            color="text.secondary"
-            gutterBottom
-          >
-            Компания
-          </Typography>
+          <p className="filters__title">Компания</p>
           <RadioButtonsGroup
             state={company}
             data={companies}
-            setData={setCompany}
+            setData={(newState) => dispatch(setCompany(newState))}
           />
         </CardContent>
       </Card>

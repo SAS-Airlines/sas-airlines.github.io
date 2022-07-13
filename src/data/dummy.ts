@@ -5,8 +5,8 @@ import { TicketProps } from "./types";
 import { randId } from "../utils";
 
 export const sorts = {
-  speed: "Самый дешевый",
-  price: "Самый быстрый",
+  speed: "Самый быстрый",
+  price: "Самый дешевый",
   optimal: "Оптимальный",
 };
 
@@ -25,6 +25,20 @@ export const tickets: TicketProps[] = [
       end: new Date(2022, 6, 13, 8, 0),
     },
     transfers: [],
+    company: "s7_airlanes",
+    route: {
+      start: "MOW",
+      end: "HKT",
+    },
+    id: randId(),
+  },
+  {
+    price: 13400,
+    time: {
+      start: new Date(2022, 6, 12, 10, 45),
+      end: new Date(2022, 6, 13, 5, 0),
+    },
+    transfers: ["HKG"],
     company: "s7_airlanes",
     route: {
       start: "MOW",
@@ -100,17 +114,21 @@ export const transfersData = {
   transfers_0: {
     value: false,
     label: "Без пересадок",
+    num: 0,
   },
   transfers_1: {
     value: false,
     label: "1 персадка",
+    num: 1,
   },
   transfers_2: {
     value: false,
     label: "2 персадки",
+    num: 2,
   },
   transfers_3: {
     value: false,
     label: "3 персадки",
+    num: 3,
   },
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
@@ -12,7 +12,10 @@ import { comaniesLogo } from "../../data/dummy";
 import "./styles.sass";
 
 const Ticket = (props: TicketProps) => {
-  const transferTime = getTransferTime(props.time.start, props.time.end);
+  const transferTime = useMemo(
+    () => getTransferTime(props.time.start, props.time.end),
+    [props]
+  );
 
   return (
     <Card>
@@ -23,10 +26,11 @@ const Ticket = (props: TicketProps) => {
           alignItems="center"
           className="ticket__top"
         >
-          <Typography className="ticket__price">
-            {getPriceInRoubles(props.price)}
-          </Typography>
-          <img src={comaniesLogo[props.company]} />
+          <h2 className="ticket__price">{getPriceInRoubles(props.price)}</h2>
+          <img
+            src={comaniesLogo[props.company]}
+            alt={`${props.company} logo`}
+          />
         </Stack>
 
         <Stack
