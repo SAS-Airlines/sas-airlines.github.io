@@ -4,9 +4,12 @@ import Grid from "@mui/material/Grid";
 import Main from "./components/layouts/Main";
 import Logo from "./components/ui/Logo";
 import Filters from "./components/layouts/Filters";
-import Checkbox from "@mui/material/Checkbox";
+import ButtonsGroup from "./components/ui/ButtonsGroup";
+import Tickets from "./components/Tickets";
 
 import "./App.sass";
+
+import { tickets } from "./data/dummy";
 
 function App() {
   return (
@@ -17,7 +20,11 @@ function App() {
         <Grid item xs={3}>
           <Filters />
         </Grid>
-        <Grid item xs={9}></Grid>
+
+        <Grid item xs={9}>
+          <ButtonsGroup />
+          <Tickets tickets={tickets} />
+        </Grid>
       </Grid>
     </Main>
   );
