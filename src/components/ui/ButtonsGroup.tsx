@@ -1,34 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-const ButtonsGroup = () => {
-  const [sortType, setSortType] = useState("speed");
+import { buttonsGroupProps } from "../../data/types";
 
-  const onSortChange = (
+const ButtonsGroup = ({ value, data, setValue }: buttonsGroupProps) => {
+  const onButtonClick = (
     event: React.MouseEvent<HTMLElement>,
-    newSort: string
+    newValue: string
   ) => {
-    setSortType(newSort);
+    setValue(newValue);
   };
 
   return (
     <ToggleButtonGroup
       color="primary"
-      value={sortType}
+      value={value}
       exclusive
-      onChange={onSortChange}
+      onChange={onButtonClick}
       className="buttonsGroup"
     >
-      <ToggleButton value="speed" className="buttonsGroup__item">
-        Самый дешевый
-      </ToggleButton>
-      <ToggleButton value="price" className="buttonsGroup__item">
-        Самый быстрый
-      </ToggleButton>
-      <ToggleButton value="optimal" className="buttonsGroup__item">
-        Оптимальный
-      </ToggleButton>
+      {Object.entries(data).map(([key, value]) => (
+        <ToggleButton key={key} value={key} className="buttonsGroup__item">
+          {value}
+        </ToggleButton>
+      ))}
     </ToggleButtonGroup>
   );
 };

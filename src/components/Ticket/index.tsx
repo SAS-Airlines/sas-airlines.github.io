@@ -4,35 +4,12 @@ import CardContent from "@mui/material/CardContent";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { getPriceInRoubles, getTransferTime, renderTime } from "../../utils";
 
-import { comaniesLogo, TicketProps } from "../../data/dummy";
+import { TicketProps } from "../../data/types";
+import { comaniesLogo } from "../../data/dummy";
 
 import "./styles.sass";
-
-const renderTime = (date: Date) =>
-  date.toLocaleTimeString("ru", {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-const getTransferTime = (start: Date, end: Date) => {
-  const diff =
-    (Date.parse(end.toString()) - Date.parse(start.toString())) / 1000;
-  const hours = Math.floor(diff / 3600);
-  const minutes = Math.floor((diff - hours * 3600) / 60);
-
-  return [hours, minutes];
-};
-
-const getPriceInRoubles = (price: number) => {
-  const roublesIntl = new Intl.NumberFormat("ru", {
-    style: "currency",
-    currency: "RUB",
-    maximumFractionDigits: 0,
-  });
-
-  return roublesIntl.format(price);
-};
 
 const Ticket = (props: TicketProps) => {
   const transferTime = getTransferTime(props.time.start, props.time.end);

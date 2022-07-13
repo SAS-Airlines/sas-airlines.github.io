@@ -1,13 +1,10 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Ticket from "../Ticket";
-import { TicketProps } from "../../data/dummy";
 
-type Props = {
-  tickets: TicketProps[];
-};
+import { TicketProps } from "../../data/types";
 
-const Tickets = (props: Props) => {
+const Tickets = (props: { tickets: TicketProps[] }) => {
   return (
     <Stack spacing={2} className="tickets">
       {props.tickets.map((ticket) => (

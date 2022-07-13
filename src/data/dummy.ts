@@ -1,21 +1,13 @@
 import S7_LOGO from "../assets/s7_logo.png";
 import XIAMEN_LOGO from "../assets/xiamen_air_logo.png";
 
-const randId = () => Math.floor(Math.random() * 100000000).toString();
+import { TicketProps } from "./types";
+import { randId } from "../utils";
 
-export type TicketProps = {
-  price: number;
-  time: {
-    start: Date;
-    end: Date;
-  };
-  transfers: string[];
-  company: string;
-  route: {
-    start: string;
-    end: string;
-  };
-  id: string;
+export const sorts = {
+  speed: "Самый дешевый",
+  price: "Самый быстрый",
+  optimal: "Оптимальный",
 };
 
 export const comaniesLogo: {
@@ -97,3 +89,28 @@ export const tickets: TicketProps[] = [
     id: randId(),
   },
 ];
+
+export const companies = {
+  all: "Все",
+  s7_airlanes: "S7 Airlines",
+  xiamen_air: "XiamenAir",
+};
+
+export const transfersData = {
+  transfers_0: {
+    value: false,
+    label: "Без пересадок",
+  },
+  transfers_1: {
+    value: false,
+    label: "1 персадка",
+  },
+  transfers_2: {
+    value: false,
+    label: "2 персадки",
+  },
+  transfers_3: {
+    value: false,
+    label: "3 персадки",
+  },
+};
