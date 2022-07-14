@@ -6,6 +6,7 @@ import Logo from "./components/ui/Logo";
 import Filters from "./components/Filters";
 import ButtonsGroup from "./components/ui/ButtonsGroup";
 import Tickets from "./components/Tickets";
+import SearchParams from "./components/SearchParams";
 
 import type { RootState } from "./redux/store";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,12 +30,14 @@ function App() {
     <Main>
       <Logo />
 
+      <SearchParams />
+
       <Grid container spacing={2}>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Filters />
         </Grid>
 
-        <Grid item xs={9}>
+        <Grid item xs={8}>
           <ButtonsGroup
             value={sortType}
             data={sorts}

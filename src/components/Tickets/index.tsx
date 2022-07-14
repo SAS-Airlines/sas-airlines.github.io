@@ -1,26 +1,37 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Ticket from "../Ticket";
+import Button from "../ui/Button";
 
 import { TicketProps } from "../../data/types";
 
 import "./styles.sass";
+import useShow from "../hooks/useShow";
 
 const Tickets = (props: { tickets: TicketProps[] }) => {
+  const [showedTickets, showAll, addTickets] = useShow(props.tickets);
+
   return (
     <Stack spacing={2} className="tickets">
-      {props.tickets.length > 0 ? (
-        props.tickets.map((ticket) => (
-          <Ticket
-            key={ticket.id}
-            id={ticket.id}
-            price={ticket.price}
-            time={{ start: ticket.time.start, end: ticket.time.end }}
-            transfers={ticket.transfers}
-            company={ticket.company}
-            route={{ start: ticket.route.start, end: ticket.route.end }}
-          />
-        ))
+      {showedTickets.length > 0 ? (
+        <>
+          {showedTickets.map((ticket) => (
+            <Ticket
+              key={ticket.id}
+              id={ticket.id}
+              price={ticket.price}
+              time={{ start: ticket.time.start, end: ticket.time.end }}
+              transfers={ticket.transfers}
+              company={ticket.company}
+              route={{ start: ticket.route.start, end: ticket.route.end }}
+            />
+          ))}
+          {!showAll && (
+            <Stack justifyContent="center" direction="row">
+              <Button onButtonClick={addTickets}>Показать еще 5 билетов</Button>
+            </Stack>
+          )}
+        </>
       ) : (
         <h3 className="tickets__empty">
           Для выбранных фильтров билетов не найдено!
