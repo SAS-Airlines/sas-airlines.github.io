@@ -13,101 +13,147 @@ export const sorts = {
 export const comaniesLogo: {
   [prop: string]: string;
 } = {
-  s7_airlanes: S7_LOGO,
-  xiamen_air: XIAMEN_LOGO,
+  "cddfa038-823b-43b1-b18d-395731881077": S7_LOGO,
+  "7dc12d0b-ce42-48a0-8673-0dad4d698764": XIAMEN_LOGO,
 };
 
 export const tickets: TicketProps[] = [
   {
-    price: 13400,
-    time: {
-      start: new Date(2022, 6, 12, 10, 45),
-      end: new Date(2022, 6, 13, 8, 0),
+    id: "9cf597f2-7bf1-4d67-9e04-9020ac26a9f8",
+    info: {
+      stops: ["HKG"],
+      origin: "PTB",
+      dateEnd: 1660945803623,
+      duration: 11520000,
+      dateStart: 1659304203623,
+      destination: "JNB",
     },
-    transfers: [],
-    company: "s7_airlanes",
-    route: {
-      start: "MOW",
-      end: "HKT",
-    },
-    id: randId(),
+    price: 4100,
+    companyId: "cddfa038-823b-43b1-b18d-395731881077",
   },
   {
-    price: 13400,
-    time: {
-      start: new Date(2022, 6, 12, 10, 45),
-      end: new Date(2022, 6, 13, 5, 0),
+    id: "76f847d3-63a0-4094-bdde-35647b000630",
+    info: {
+      stops: ["HKT", "HKG"],
+      origin: "KRS",
+      dateEnd: 1660686603624,
+      duration: 10320000,
+      dateStart: 1658353803624,
+      destination: "JNB",
     },
-    transfers: ["HKG"],
-    company: "s7_airlanes",
-    route: {
-      start: "MOW",
-      end: "HKT",
-    },
-    id: randId(),
+    price: 31300,
+    companyId: "cddfa038-823b-43b1-b18d-395731881077",
   },
   {
-    price: 13500,
-    time: {
-      start: new Date(2022, 6, 12, 10, 45),
-      end: new Date(2022, 6, 13, 8, 0),
+    id: "5048b977-b9cd-475f-8bfe-83e2448c1e2f",
+    info: {
+      stops: ["MOW"],
+      origin: "EKV",
+      dateEnd: 1658872203624,
+      duration: 14100000,
+      dateStart: 1658008203624,
+      destination: "EKT",
     },
-    transfers: ["HKG", "JNB"],
-    company: "xiamen_air",
-    route: {
-      start: "MOW",
-      end: "HKT",
-    },
-    id: randId(),
+    price: 6700,
+    companyId: "7dc12d0b-ce42-48a0-8673-0dad4d698764",
   },
   {
-    price: 13600,
-    time: {
-      start: new Date(2022, 6, 12, 10, 45),
-      end: new Date(2022, 6, 13, 8, 0),
+    id: "532375bb-2557-4687-a61b-403c0e0d7ba8",
+    info: {
+      stops: ["EKT"],
+      origin: "HKG",
+      dateEnd: 1664574603624,
+      duration: 8880000,
+      dateStart: 1663451403624,
+      destination: "ARH",
     },
-    transfers: ["HKG"],
-    company: "s7_airlanes",
-    route: {
-      start: "MOW",
-      end: "HKT",
-    },
-    id: randId(),
+    price: 57400,
+    companyId: "cddfa038-823b-43b1-b18d-395731881077",
   },
   {
-    price: 18500,
-    time: {
-      start: new Date(2022, 6, 12, 10, 45),
-      end: new Date(2022, 6, 12, 18, 30),
+    id: "958aecea-d0ca-4128-b219-29d1806b0ce5",
+    info: {
+      stops: [],
+      origin: "MOW",
+      dateEnd: 1659390603624,
+      duration: 1860000,
+      dateStart: 1657403403624,
+      destination: "ARH",
     },
-    transfers: ["JNB"],
-    company: "s7_airlanes",
-    route: {
-      start: "MOW",
-      end: "HKT",
-    },
-    id: randId(),
+    price: 12300,
+    companyId: "cddfa038-823b-43b1-b18d-395731881077",
   },
   {
-    price: 12500,
-    time: {
-      start: new Date(2022, 6, 12, 10, 45),
-      end: new Date(2022, 6, 13, 18, 50),
+    id: "9f5ead8f-fed3-46be-beee-a4cbb8809111",
+    info: {
+      stops: ["KRS", "SRT"],
+      origin: "MOW",
+      dateEnd: 1660427403624,
+      duration: 16980000,
+      dateStart: 1659045003624,
+      destination: "EKT",
     },
-    transfers: ["HKG", "JNB", "MMB"],
-    company: "xiamen_air",
-    route: {
-      start: "MOW",
-      end: "HKT",
+    price: 68900,
+    companyId: "cddfa038-823b-43b1-b18d-395731881077",
+  },
+  {
+    id: "cae3f047-a882-4f1c-a71a-179ba1896188",
+    info: {
+      stops: [],
+      origin: "LOS",
+      dateEnd: 1658440203624,
+      duration: 2640000,
+      dateStart: 1657749003624,
+      destination: "ARH",
     },
-    id: randId(),
+    price: 20700,
+    companyId: "7dc12d0b-ce42-48a0-8673-0dad4d698764",
+  },
+  {
+    id: "5bf68e02-0429-48a8-a51b-c6022908baf6",
+    info: {
+      stops: [],
+      origin: "EKT",
+      dateEnd: 1664661003624,
+      duration: 840000,
+      dateStart: 1663105803624,
+      destination: "KRS",
+    },
+    price: 21300,
+    companyId: "7dc12d0b-ce42-48a0-8673-0dad4d698764",
+  },
+  {
+    id: "9885af15-fd79-4c66-9ddb-51c2de9f1987",
+    info: {
+      stops: ["TRN", "KRS", "SRT"],
+      origin: "MOW",
+      dateEnd: 1664401803624,
+      duration: 12120000,
+      dateStart: 1663797003624,
+      destination: "LOS",
+    },
+    price: 4700,
+    companyId: "7dc12d0b-ce42-48a0-8673-0dad4d698764",
+  },
+  {
+    id: "5f49e1cf-c17c-4c07-9c82-4bcdbe4f3178",
+    info: {
+      stops: ["LOS", "EKV"],
+      origin: "EKT",
+      dateEnd: 1660341003624,
+      duration: 24120000,
+      dateStart: 1658181003624,
+      destination: "ARH",
+    },
+    price: 52400,
+    companyId: "cddfa038-823b-43b1-b18d-395731881077",
   },
 ];
 
 export const companies = {
   all: "Все",
-  s7_airlanes: "S7 Airlines",
-  xiamen_air: "XiamenAir",
+  "cddfa038-823b-43b1-b18d-395731881077": "S7 Airlines",
+  "7dc12d0b-ce42-48a0-8673-0dad4d698764": "XiamenAir",
 };
 
 export const transfersData = {

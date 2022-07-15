@@ -20,10 +20,8 @@ const Tickets = (props: { tickets: TicketProps[] }) => {
               key={ticket.id}
               id={ticket.id}
               price={ticket.price}
-              time={{ start: ticket.time.start, end: ticket.time.end }}
-              transfers={ticket.transfers}
-              company={ticket.company}
-              route={{ start: ticket.route.start, end: ticket.route.end }}
+              companyId={ticket.companyId}
+              info={ticket.info}
             />
           ))}
           {!showAll && (

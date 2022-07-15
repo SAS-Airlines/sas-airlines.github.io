@@ -11,11 +11,10 @@ import { comaniesLogo } from "../../data/dummy";
 
 import "./styles.sass";
 
-const Ticket = (props: TicketProps) => {
-  const transferTime = useMemo(
-    () => getTransferTime(props.time.start, props.time.end),
-    [props]
-  );
+const Ticket = ({ price, companyId, info }: TicketProps) => {
+  const { origin, destination, dateStart, dateEnd, stops, duration } = info;
+
+  const transferTime = useMemo(() => getTransferTime(duration), [duration]);
 
   return (
     <Card>
@@ -26,11 +25,8 @@ const Ticket = (props: TicketProps) => {
           alignItems="center"
           className="ticket__top"
         >
-          <h2 className="ticket__price">{getPriceInRoubles(props.price)}</h2>
-          <img
-            src={comaniesLogo[props.company]}
-            alt={`${props.company} logo`}
-          />
+          <h2 className="ticket__price">{getPriceInRoubles(price)}</h2>
+          <img src={comaniesLogo[companyId]} alt={`Company logo`} />
         </Stack>
 
         <Stack
@@ -40,10 +36,10 @@ const Ticket = (props: TicketProps) => {
         >
           <Box className="ticket__infoItem">
             <Typography className="ticket__text_gray ticket__text_upper">
-              {props.route.start} - {props.route.end}
+              {origin} - {destination}
             </Typography>
             <Typography className="ticket__text">
-              {renderTime(props.time.start)} - {renderTime(props.time.end)}
+              {renderTime(dateStart)} - {renderTime(dateEnd)}
             </Typography>
           </Box>
 
@@ -57,26 +53,26 @@ const Ticket = (props: TicketProps) => {
           </Box>
 
           <Box sx={{ alignSelf: "center" }} className="ticket__infoItem">
-            {props.transfers.length === 0 ? (
+            {stops.length === 0 ? (
               <Typography className="ticket__text_gray ticket__text_upper">
                 Без пересадок
               </Typography>
-            ) : props.transfers.length > 1 ? (
+            ) : stops.length > 1 ? (
               <>
                 <Typography className="ticket__text_gray ticket__text_upper">
-                  {props.transfers.length} пересадки
+                  {stops.length} пересадки
                 </Typography>
                 <Typography className="ticket__text">
-                  {props.transfers.join(", ")}
+                  {stops.join(", ")}
                 </Typography>
               </>
             ) : (
               <>
                 <Typography className="ticket__text_gray ticket__text_upper">
-                  {props.transfers.length} пересадка
+                  {stops.length} пересадка
                 </Typography>
                 <Typography className="ticket__text">
-                  {props.transfers.toString()}
+                  {stops.toString()}
                 </Typography>
               </>
             )}

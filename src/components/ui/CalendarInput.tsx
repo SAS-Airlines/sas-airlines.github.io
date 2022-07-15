@@ -4,11 +4,17 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import ruLocale from "date-fns/locale/ru";
 
-const CalendarInput = ({ label }: { label: string }) => {
-  const [value, setValue] = React.useState<Date | null>(null);
-
+const CalendarInput = ({
+  label,
+  value,
+  setValue,
+}: {
+  label: string;
+  value: number | null;
+  setValue: (newDate: number | null) => void;
+}) => {
   const handleChange = (newValue: Date | null) => {
-    setValue(newValue);
+    setValue(newValue ? newValue.getTime() : newValue);
   };
 
   return (
@@ -18,6 +24,7 @@ const CalendarInput = ({ label }: { label: string }) => {
         inputFormat="d MMMM, cccccc"
         value={value}
         onChange={handleChange}
+        disableMaskedInput
         renderInput={(params) => <TextField {...params} />}
       />
     </LocalizationProvider>

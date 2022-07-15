@@ -6,8 +6,22 @@ import Input from "../ui/Input";
 import CalendarInput from "../ui/CalendarInput";
 import { IconButton } from "@mui/material";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
+import type { RootState } from "../../redux/store";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setOrigin,
+  setDestination,
+  switchPlaces,
+  setDateEnd,
+  setDateStart,
+} from "../../redux/filterSlice";
 
 const SearchParams = () => {
+  const { origin, destination, dateStart, dateEnd } = useSelector(
+    (state: RootState) => state.filters
+  );
+  const dispatch = useDispatch();
+
   return (
     <Box sx={{ width: "100%" }}>
       <Stack
@@ -19,7 +33,11 @@ const SearchParams = () => {
         }}
       >
         <Paper sx={{ position: "relative" }}>
-          <Input label="Откуда" />
+          <Input
+            label="Откуда"
+            value={origin}
+            setValue={(newValue) => dispatch(setOrigin(newValue))}
+          />
           <IconButton
             sx={{
               position: "absolute",
@@ -29,18 +47,31 @@ const SearchParams = () => {
               zIndex: 10,
             }}
             color="primary"
+            onClick={() => dispatch(switchPlaces())}
           >
             <ChangeCircleIcon fontSize="large" />
           </IconButton>
         </Paper>
         <Paper>
-          <Input label="Куда" />
+          <Input
+            label="Куда"
+            value={destination}
+            setValue={(newValue) => dispatch(setDestination(newValue))}
+          />
         </Paper>
         <Paper>
-          <CalendarInput label="Когда" />
+          <CalendarInput
+            label="Когда"
+            value={dateStart}
+            setValue={(newValue) => dispatch(setDateStart(newValue))}
+          />
         </Paper>
         <Paper>
-          <CalendarInput label="Обратно" />
+          <CalendarInput
+            label="Обратно"
+            value={dateEnd}
+            setValue={(newValue) => dispatch(setDateEnd(newValue))}
+          />
         </Paper>
       </Stack>
     </Box>
