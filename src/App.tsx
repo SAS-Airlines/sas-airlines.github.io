@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 
 import Grid from "@mui/material/Grid";
 import Main from "./layouts/Main";
@@ -8,23 +8,58 @@ import ButtonsGroup from "./components/ui/ButtonsGroup";
 import Tickets from "./components/Tickets";
 import SearchParams from "./components/SearchParams";
 
-import type { RootState } from "./redux/store";
+import type { AppDispatch, RootState } from "./redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { setSortType } from "./redux/filterSlice";
 
 import { sorts, tickets } from "./data/dummy";
 import sortTickets from "./utils/sortTickets";
 
+import ticketsAPI from "./API";
+import { fetchTickets } from "./redux/ticketsSlice";
+
 function App() {
-  const { sortType, company, transfers } = useSelector(
-    (state: RootState) => state.filters
+  const {
+    sortType,
+    company,
+    transfers,
+    origin,
+    destination,
+    dateStart,
+    dateEnd,
+  } = useSelector((state: RootState) => state.filters);
+  const { entities, loading } = useSelector(
+    (state: RootState) => state.tickets
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const sortedTickets = useMemo(
-    () => sortTickets(tickets, sortType, company, transfers),
-    [sortType, company, transfers]
+    () =>
+      sortTickets(
+        entities,
+        sortType,
+        company,
+        transfers,
+        origin,
+        destination,
+        dateStart,
+        dateEnd
+      ),
+    [
+      entities,
+      sortType,
+      company,
+      transfers,
+      origin,
+      destination,
+      dateStart,
+      dateEnd,
+    ]
   );
+
+  useEffect(() => {
+    dispatch(fetchTickets());
+  }, []);
 
   return (
     <Main>
@@ -43,7 +78,11 @@ function App() {
             data={sorts}
             setValue={(newData) => dispatch(setSortType(newData))}
           />
-          <Tickets tickets={sortedTickets} />
+          {loading === ("pending" || "idle") ? (
+            <h3 className="tickets__empty">Идет загрузка...</h3>
+          ) : (
+            <Tickets tickets={sortedTickets} />
+          )}
         </Grid>
       </Grid>
     </Main>

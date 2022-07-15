@@ -29,17 +29,36 @@ export type buttonsGroupProps = {
   setValue: (newData: string) => void;
 };
 
+export type CityCodes =
+  | "MOW"
+  | "HKT"
+  | "HKG"
+  | "JNB"
+  | "PTB"
+  | "ARH"
+  | "TRN"
+  | "KRS"
+  | "SRT"
+  | "LOS"
+  | "EKV"
+  | "EKT";
+
 export type TicketProps = {
-  price: number;
-  time: {
-    start: Date;
-    end: Date;
-  };
-  transfers: string[];
-  company: string;
-  route: {
-    start: string;
-    end: string;
-  };
   id: string;
+  price: number;
+  companyId: string;
+  info: {
+    origin: CityCodes;
+    destination: CityCodes;
+    dateStart: number;
+    dateEnd: number;
+    stops: CityCodes[];
+    duration: number;
+  };
+};
+
+export type Company = {
+  id: string;
+  name: string;
+  logo: string;
 };
