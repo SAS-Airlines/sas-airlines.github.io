@@ -6,7 +6,7 @@ import Button from "../ui/Button";
 import { TicketProps } from "../../data/types";
 
 import "./styles.sass";
-import useShow from "../hooks/useShow";
+import useShow from "../../hooks/useShow";
 
 const Tickets = (props: { tickets: TicketProps[] }) => {
   const [showedTickets, showAll, addTickets] = useShow(props.tickets);
