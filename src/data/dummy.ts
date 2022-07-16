@@ -10,7 +10,7 @@ export const sorts = {
   optimal: "Оптимальный",
 };
 
-export const comaniesLogo: {
+export const companiesLogo: {
   [prop: string]: string;
 } = {
   "cddfa038-823b-43b1-b18d-395731881077": S7_LOGO,

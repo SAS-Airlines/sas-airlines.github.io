@@ -8,6 +8,13 @@ const ticketsAPI = {
 
     return tickets;
   },
+  getCompanies: async () => {
+    const companies = await axios
+      .get("https://api.npoint.io/a1b1c28b32d9785bb26c")
+      .then((response) => response.data);
+
+    return companies;
+  },
 };
 
 export default ticketsAPI;
