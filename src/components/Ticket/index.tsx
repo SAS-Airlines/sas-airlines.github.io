@@ -7,12 +7,19 @@ import Typography from "@mui/material/Typography";
 import { getPriceInRoubles, getTransferTime, renderTime } from "../../utils";
 
 import { TicketProps } from "../../data/types";
-import { comaniesLogo } from "../../data/dummy";
 
 import "./styles.sass";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 
 const Ticket = ({ price, companyId, info }: TicketProps) => {
+  const companies = useSelector((state: RootState) => state.companies.entities);
   const { origin, destination, dateStart, dateEnd, stops, duration } = info;
+
+  const company = useMemo(
+    () => companies.find((company) => company.id === companyId),
+    [companies]
+  );
 
   const transferTime = useMemo(() => getTransferTime(duration), [duration]);
 
@@ -26,7 +33,7 @@ const Ticket = ({ price, companyId, info }: TicketProps) => {
           className="ticket__top"
         >
           <h2 className="ticket__price">{getPriceInRoubles(price)}</h2>
-          <img src={comaniesLogo[companyId]} alt={`Company logo`} />
+          {company ? <img src={company.logo} alt={company.name} /> : null}
         </Stack>
 
         <Stack

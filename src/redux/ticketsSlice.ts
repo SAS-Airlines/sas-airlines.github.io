@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  SerializedError,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { TicketProps } from "../data/types";

@@ -11,14 +11,26 @@ type transfersType = {
 
 const sortTickets = (
   tickets: TicketProps[],
-  sortType: string,
-  company: string,
-  transfers: transfersType,
-  origin: string,
-  destination: string,
-  dateStart: number | null,
-  dateEnd: number | null
+  filters: {
+    sortType: string;
+    company: string;
+    transfers: transfersType;
+    origin: string;
+    destination: string;
+    dateStart: number | null;
+    dateEnd: number | null;
+  }
 ): TicketProps[] => {
+  const {
+    sortType,
+    company,
+    transfers,
+    origin,
+    destination,
+    dateStart,
+    dateEnd,
+  } = filters;
+
   return tickets
     .filter((ticket) => {
       const companyMatch = ticket.companyId === company || company === "all";
