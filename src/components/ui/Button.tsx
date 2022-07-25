@@ -7,7 +7,11 @@ const CustomButton = (props: {
 }) => {
   return (
     <>
-      <Button variant="contained" onClick={props.onButtonClick}>
+      <Button
+        variant="contained"
+        onClick={props.onButtonClick}
+        className="button"
+      >
         {props.children}
       </Button>
     </>

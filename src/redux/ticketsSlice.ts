@@ -6,7 +6,7 @@ import ticketsAPI from "../API";
 
 const initialState: {
   entities: TicketProps[];
-  loading: string;
+  loading: "idle" | "fulfilled" | "rejected" | "pending";
   error: string | undefined;
 } = {
   entities: [],

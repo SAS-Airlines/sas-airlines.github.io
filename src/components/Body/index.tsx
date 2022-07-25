@@ -42,8 +42,14 @@ const Body = () => {
           data={sorts}
           setValue={(newData) => dispatch(setSortType(newData))}
         />
-        {loading === ("pending" || "idle") ? (
-          <SkeletonTickets />
+        {loading === ("pending" || "idle" || "rejected") ? (
+          loading === ("pending" || "idle") ? (
+            <SkeletonTickets />
+          ) : (
+            <h3 className="tickets__empty">
+              Ошибка загрузки! Перезагрузите страницу!
+            </h3>
+          )
         ) : (
           <Tickets tickets={sortedTickets} />
         )}

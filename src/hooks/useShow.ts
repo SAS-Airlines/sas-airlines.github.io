@@ -1,31 +1,33 @@
 import { useState, useEffect } from "react";
 
-const useShow = <T>(items: T[]): [T[], boolean, () => void] => {
-  const [showed, setShowed] = useState(5);
+const DEFAULT_TICKETS_COUNT = 5;
+
+const useShow = <T>(items: T[]): [T[], number, boolean, () => void] => {
+  const [showed, setShowed] = useState(DEFAULT_TICKETS_COUNT);
   const [showAll, setShowAll] = useState(showed >= items.length);
   const [showedItems, setShowedItems] = useState(items.slice(0, showed));
 
   const addItems = () => {
-    if (showed + 5 > items.length) {
+    if (showed + DEFAULT_TICKETS_COUNT > items.length) {
       setShowed(items.length);
       setShowAll(true);
     } else {
-      setShowed(showed + 5);
+      setShowed(showed + DEFAULT_TICKETS_COUNT);
     }
   };
 
   useEffect(() => {
     setShowedItems(items.slice(0, showed));
     setShowAll(showed >= items.length);
-  }, [showed]);
+  }, [showed, items]);
 
   useEffect(() => {
-    setShowed(5);
+    setShowed(DEFAULT_TICKETS_COUNT);
     setShowAll(false);
-    setShowedItems(items.slice(0, 5));
+    setShowedItems(items.slice(0, DEFAULT_TICKETS_COUNT));
   }, [items]);
 
-  return [showedItems, showAll, addItems];
+  return [showedItems, items.length - showed, showAll, addItems];
 };
 
 export default useShow;
