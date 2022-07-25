@@ -7,9 +7,15 @@ import { TicketProps } from "../../data/types";
 
 import "./styles.sass";
 import useShow from "../../hooks/useShow";
+import { numWord } from "../../utils";
+
+const DEFAULT_TICKETS_COUNT = 5;
+const TICKETS_WORDS = ["билет", "билета", "билетов"];
 
 const Tickets = (props: { tickets: TicketProps[] }) => {
-  const [showedTickets, showAll, addTickets] = useShow(props.tickets);
+  const [showedTickets, ticketsLeft, showAll, addTickets] = useShow(
+    props.tickets
+  );
 
   return (
     <Stack spacing={2} className="tickets">
@@ -26,7 +32,14 @@ const Tickets = (props: { tickets: TicketProps[] }) => {
           ))}
           {!showAll && (
             <Stack justifyContent="center" direction="row">
-              <Button onButtonClick={addTickets}>Показать еще 5 билетов</Button>
+              <Button onButtonClick={addTickets}>
+                {ticketsLeft < DEFAULT_TICKETS_COUNT
+                  ? `Показать ${ticketsLeft} ${numWord(
+                      ticketsLeft,
+                      TICKETS_WORDS
+                    )}`
+                  : `Показать еще ${DEFAULT_TICKETS_COUNT} билетов`}
+              </Button>
             </Stack>
           )}
         </>
