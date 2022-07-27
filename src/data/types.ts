@@ -43,6 +43,11 @@ export type CityCodes =
   | "EKV"
   | "EKT";
 
+export interface City {
+  value: string;
+  label: string;
+}
+
 export type TicketProps = {
   id: string;
   price: number;

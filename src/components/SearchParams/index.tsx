@@ -32,10 +32,11 @@ const SearchParams = () => {
           paddingLeft: "15px",
         }}
       >
-        <Paper sx={{ position: "relative" }}>
+        <Paper sx={{ position: "relative", flex: 1 }}>
           <Input
             label="Откуда"
             value={origin}
+            disabled={destination}
             setValue={(newValue) => dispatch(setOrigin(newValue))}
           />
           <IconButton
@@ -52,21 +53,22 @@ const SearchParams = () => {
             <ChangeCircleIcon fontSize="large" />
           </IconButton>
         </Paper>
-        <Paper>
+        <Paper sx={{ flex: 1 }}>
           <Input
             label="Куда"
             value={destination}
+            disabled={origin}
             setValue={(newValue) => dispatch(setDestination(newValue))}
           />
         </Paper>
-        <Paper>
+        <Paper sx={{ flex: 1 }}>
           <CalendarInput
             label="Когда"
             value={dateStart}
             setValue={(newValue) => dispatch(setDateStart(newValue))}
           />
         </Paper>
-        <Paper>
+        <Paper sx={{ flex: 1 }}>
           <CalendarInput
             label="Обратно"
             value={dateEnd}

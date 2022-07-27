@@ -30,7 +30,7 @@ const Tickets = (props: { tickets: TicketProps[] }) => {
               info={ticket.info}
             />
           ))}
-          {!showAll && (
+          {!showAll && ticketsLeft > 0 && (
             <Stack justifyContent="center" direction="row">
               <Button onButtonClick={addTickets}>
                 {ticketsLeft < DEFAULT_TICKETS_COUNT

@@ -16,6 +16,8 @@ const useShow = <T>(items: T[]): [T[], number, boolean, () => void] => {
     }
   };
 
+  const itemsLeft = items.length - showed;
+
   useEffect(() => {
     setShowedItems(items.slice(0, showed));
     setShowAll(showed >= items.length);
@@ -27,7 +29,7 @@ const useShow = <T>(items: T[]): [T[], number, boolean, () => void] => {
     setShowedItems(items.slice(0, DEFAULT_TICKETS_COUNT));
   }, [items]);
 
-  return [showedItems, items.length - showed, showAll, addItems];
+  return [showedItems, itemsLeft > 0 ? itemsLeft : 0, showAll, addItems];
 };
 
 export default useShow;
