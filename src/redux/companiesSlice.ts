@@ -7,7 +7,7 @@ import ticketsAPI from "../API";
 
 const initialState: {
   entities: Company[];
-  loading: string;
+  loading: "idle" | "pending" | "fulfilled" | "rejected";
   error: string | undefined;
 } = {
   entities: [],
@@ -47,6 +47,7 @@ export const companiesSlice = createSlice({
     builder.addCase(fetchCompanies.rejected, (state, action) => {
       state.loading = "rejected";
       state.error = action.error.message;
+      state.entities = [];
     });
   },
 });

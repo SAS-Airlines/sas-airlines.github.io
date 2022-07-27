@@ -1,26 +1,51 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import { Autocomplete } from "@mui/material";
+import { cities } from "../../data/dummy";
+
+const getCity = (value: string) =>
+  cities.find((city) => city.value === value) || null;
 
 const Input = ({
   label,
   value,
+  disabled = "",
   setValue,
 }: {
   label: string;
   value: string;
+  disabled?: string;
   setValue: (newValue: string) => void;
 }) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-  };
-
   return (
-    <TextField
-      id="outlined-basic"
-      label={label}
-      variant="outlined"
-      value={value}
-      onChange={handleChange}
+    <Autocomplete
+      freeSolo
+      value={getCity(value) || ""}
+      onChange={(_, newValue) => {
+        if (typeof newValue === "string") {
+          const city = getCity(newValue);
+          setValue(city ? city.value : "");
+        } else if (newValue && newValue.value) {
+          setValue(newValue.value);
+        } else {
+          setValue("");
+        }
+      }}
+      options={cities}
+      getOptionDisabled={(option) =>
+        disabled !== "" && disabled === option.value
+      }
+      renderOption={(props, option) => (
+        <li {...props}>{`${option.label} (${option.value})`}</li>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          id="outlined-basic"
+          label={label}
+          variant="outlined"
+        />
+      )}
     />
   );
 };

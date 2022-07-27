@@ -1,8 +1,7 @@
 import S7_LOGO from "../assets/s7_logo.png";
 import XIAMEN_LOGO from "../assets/xiamen_air_logo.png";
 
-import { TicketProps } from "./types";
-import { randId } from "../utils";
+import { City, TicketProps } from "./types";
 
 export const sorts = {
   speed: "Самый быстрый",
@@ -178,3 +177,54 @@ export const transfersData = {
     num: 3,
   },
 };
+
+export const cities: City[] = [
+  {
+    value: "MOW",
+    label: "Москва",
+  },
+  {
+    value: "HKT",
+    label: "Пхукет",
+  },
+  {
+    value: "HKG",
+    label: "Гонконг",
+  },
+  {
+    value: "JNB",
+    label: "Йоханнесбург",
+  },
+  {
+    value: "PTB",
+    label: "Петерсбург",
+  },
+  {
+    value: "ARH",
+    label: "Архангельск",
+  },
+  {
+    value: "TRN",
+    label: "Турин",
+  },
+  {
+    value: "KRS",
+    label: "Кристиансан",
+  },
+  {
+    value: "SRT",
+    label: "Сороти",
+  },
+  {
+    value: "LOS",
+    label: "Лагос",
+  },
+  {
+    value: "EKV",
+    label: "EKV",
+  },
+  {
+    value: "EKT",
+    label: "Эскильстун",
+  },
+];

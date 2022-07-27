@@ -31,6 +31,8 @@ const sortTickets = (
     dateEnd,
   } = filters;
 
+  if (tickets.length === 0) return [];
+
   return tickets
     .filter((ticket) => {
       const companyMatch = ticket.companyId === company || company === "all";
