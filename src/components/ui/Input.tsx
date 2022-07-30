@@ -31,7 +31,7 @@ const Input = ({
           setValue("");
         }
       }}
-      options={cities}
+      options={cities.filter((city) => city.value !== disabled)}
       getOptionDisabled={(option) =>
         disabled !== "" && disabled === option.value
       }
