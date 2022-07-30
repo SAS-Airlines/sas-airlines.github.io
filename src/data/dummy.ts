@@ -150,7 +150,6 @@ export const tickets: TicketProps[] = [
 ];
 
 export const companies = {
-  all: "Все",
   "cddfa038-823b-43b1-b18d-395731881077": "S7 Airlines",
   "7dc12d0b-ce42-48a0-8673-0dad4d698764": "XiamenAir",
 };

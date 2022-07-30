@@ -18,7 +18,7 @@ const Ticket = ({ price, companyId, info }: TicketProps) => {
 
   const company = useMemo(
     () => companies.find((company) => company.id === companyId),
-    [companies]
+    [companies, companyId]
   );
 
   const transferTime = useMemo(() => getTransferTime(duration), [duration]);
